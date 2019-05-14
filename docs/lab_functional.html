@@ -9,64 +9,89 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Paulo Czarnewski • 13-May-2019" />
+<meta name="author" content="Paulo Czarnewski • 14-May-2019" />
 
 
 <title>Gene Function Annotation</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="lab_functional_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="lab_functional_files/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="lab_functional_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lab_functional_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lab_functional_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="lab_functional_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="lab_functional_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="lab_functional_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="lab_functional_files/navigation-1.1/tabsets.js"></script>
+<link href="lab_functional_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="lab_functional_files/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="lab_functional_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="lab_functional_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 
 </style>
 <script>
@@ -485,7 +510,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Gene Function Annotation</h1>
 <h3 class="subtitle">Workshop on RNA-Seq</h3>
-<h4 class="author">Paulo Czarnewski • 13-May-2019</h4>
+<h4 class="author">Paulo Czarnewski • 14-May-2019</h4>
 
 </div>
 
@@ -496,24 +521,25 @@ div.tocify {
 <p><br></p>
 <div id="loading-data" class="section level1">
 <h1><span class="header-section-number">1</span> Loading data</h1>
+<p>The cpm data and metadata can be downloaded from <a href="https://github.com/NBISweden/course_rnaseq/tree/master/data">this location</a>. The files needed are <strong>cpm.csv</strong> and <strong>metadata_raw.csv</strong>. Place the files in a directory named <code>data</code> in your current working directory.</p>
 <p>Loading packages and data.</p>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pheatmap)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pheatmap)
 <span class="kw">library</span>(rafalib)
 <span class="kw">library</span>(DESeq2)
 <span class="kw">library</span>(pvclust)
 <span class="kw">library</span>(biomaRt)
 <span class="kw">library</span>(enrichR)
-<span class="kw">library</span>(fgsea)</code></pre></div>
+<span class="kw">library</span>(fgsea)</code></pre>
 </div>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">metadata &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;data/metadata_raw.csv&quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>,<span class="dt">stringsAsFactors =</span> T)
+<pre class="sourceCode r"><code class="sourceCode r">metadata &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;data/metadata_raw.csv&quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>,<span class="dt">stringsAsFactors =</span> T)
 
 <span class="co">#Load data and metadata</span>
 cpm &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;data/cpm.csv&quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)
@@ -523,7 +549,7 @@ logcpm &lt;-<span class="st"> </span><span class="kw">log2</span>( cpm <span cla
 <span class="co"># Gene selection</span>
 vars &lt;-<span class="st"> </span><span class="kw">apply</span>(logcpm,<span class="dv">1</span>,var)
 vars &lt;-<span class="st"> </span><span class="kw">sort</span>( vars , <span class="dt">decreasing=</span>T)
-top_var &lt;-<span class="st"> </span><span class="kw">names</span>( vars ) [<span class="dv">1</span><span class="op">:</span><span class="dv">500</span>]</code></pre></div>
+top_var &lt;-<span class="st"> </span><span class="kw">names</span>( vars ) [<span class="dv">1</span><span class="op">:</span><span class="dv">500</span>]</code></pre>
 </div>
 <div class="instruction">
 <p><i class="fas fa-exclamation-circle"></i> Here you would select genes based on p-values and logFC you obtained from differential expression. But for simplicity and reduce dependency on other parts of the course, we are selecting only the top 500 variable genes.</p>
@@ -536,9 +562,9 @@ top_var &lt;-<span class="st"> </span><span class="kw">names</span>( vars ) [<sp
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cl &lt;-<span class="st"> </span><span class="kw">pheatmap</span>( logcpm[top_var,] , <span class="dt">scale =</span> <span class="st">&quot;row&quot;</span> , <span class="dt">color =</span> <span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;navy&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;firebrick&quot;</span>))(<span class="dv">90</span>), <span class="dt">border_color =</span> <span class="ot">NA</span>, <span class="dt">cluster_cols =</span> F,<span class="dt">cutree_rows =</span> <span class="dv">2</span>)
+<pre class="sourceCode r"><code class="sourceCode r">cl &lt;-<span class="st"> </span><span class="kw">pheatmap</span>( logcpm[top_var,] , <span class="dt">scale =</span> <span class="st">&quot;row&quot;</span> , <span class="dt">color =</span> <span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;navy&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;firebrick&quot;</span>))(<span class="dv">90</span>), <span class="dt">border_color =</span> <span class="ot">NA</span>, <span class="dt">cluster_cols =</span> F,<span class="dt">cutree_rows =</span> <span class="dv">2</span>)
 
-gene_clusters &lt;-<span class="st"> </span><span class="kw">cutree</span>(cl<span class="op">$</span>tree_row,<span class="dt">k =</span> <span class="dv">2</span>)</code></pre></div>
+gene_clusters &lt;-<span class="st"> </span><span class="kw">cutree</span>(cl<span class="op">$</span>tree_row,<span class="dt">k =</span> <span class="dv">2</span>)</code></pre>
 <img src="lab_functional_files/figure-html/unnamed-chunk-4-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
 </div>
 <hr />
@@ -603,13 +629,13 @@ gene_clusters &lt;-<span class="st"> </span><span class="kw">cutree</span>(cl<sp
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(enrichR)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(enrichR)
 
 genes_cluster1 &lt;-<span class="st"> </span><span class="kw">names</span>(gene_clusters)[gene_clusters <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]
 genes_cluster2 &lt;-<span class="st"> </span><span class="kw">names</span>(gene_clusters)[gene_clusters <span class="op">==</span><span class="st"> </span><span class="dv">2</span>]
 
 <span class="kw">head</span>(logcpm[genes_cluster1,])
-<span class="kw">head</span>(logcpm[genes_cluster2,])</code></pre></div>
+<span class="kw">head</span>(logcpm[genes_cluster2,])</code></pre>
 </div>
 <div id="go-enrichment-with-enrichr" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> GO enrichment (with enrichR)</h3>
@@ -617,19 +643,20 @@ genes_cluster2 &lt;-<span class="st"> </span><span class="kw">names</span>(gene_
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">go_cluster2 &lt;-<span class="st"> </span><span class="kw">enrichr</span>(<span class="dt">genes =</span> genes_cluster2,<span class="dt">databases =</span> <span class="st">&quot;GO_Biological_Process_2018&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">go_cluster2 &lt;-<span class="st"> </span><span class="kw">enrichr</span>(<span class="dt">genes =</span> genes_cluster2,<span class="dt">databases =</span> <span class="st">&quot;GO_Biological_Process_2018&quot;</span>)
 go_cluster2 &lt;-<span class="st"> </span>go_cluster2<span class="op">$</span>GO_Biological_Process_<span class="dv">2018</span>
 go_cluster2 &lt;-<span class="st"> </span>go_cluster2[<span class="kw">order</span>(go_cluster2<span class="op">$</span>P.value),]
 go_cluster2[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]
 
 <span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">20</span>,<span class="dv">2</span>,<span class="dv">2</span>))
-<span class="kw">barplot</span>( <span class="op">-</span><span class="kw">log10</span>(go_cluster2<span class="op">$</span>P.value[<span class="dv">15</span><span class="op">:</span><span class="dv">1</span>]), <span class="dt">horiz =</span> T, <span class="dt">names.arg =</span> go_cluster2<span class="op">$</span>Term[<span class="dv">15</span><span class="op">:</span><span class="dv">1</span>],<span class="dt">las=</span><span class="dv">1</span>)</code></pre></div>
+<span class="kw">barplot</span>( <span class="op">-</span><span class="kw">log10</span>(go_cluster2<span class="op">$</span>P.value[<span class="dv">15</span><span class="op">:</span><span class="dv">1</span>]), <span class="dt">horiz =</span> T, <span class="dt">names.arg =</span> go_cluster2<span class="op">$</span>Term[<span class="dv">15</span><span class="op">:</span><span class="dv">1</span>],<span class="dt">las=</span><span class="dv">1</span>)</code></pre>
 <img src="lab_functional_files/figure-html/unnamed-chunk-6-1.svg" width="960" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p><i class="fas fa-comments"></i> <strong>Exploratory Questions</strong></p>
 <ul>
 <li>Which is the most enriched GO term for cluster1?</li>
-<li>How many genes from your data set were detected in this most GO term? What is the percentage of genes out of the total list that defines the GO term?</li>
+<li>How many genes from your data set were detected in this most GO term?
+What is the percentage of genes out of the total list that defines the GO term?</li>
 <li>Which genes from your data set belong to this most enriched GO term?</li>
 <li>Some genes make part of several GO terms, can you list some?</li>
 </ul>
@@ -640,13 +667,13 @@ go_cluster2[<span class="dv">1</span><span class="op">:</span><span class="dv">5
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kegg_cluster2 &lt;-<span class="st"> </span><span class="kw">enrichr</span>(<span class="dt">genes =</span> genes_cluster2,<span class="dt">databases =</span> <span class="st">&quot;KEGG_2019_Human&quot;</span>)
-kegg_cluster2 &lt;-<span class="st"> </span>kegg_cluster2<span class="op">$</span>KEGG_2019_Human
+<pre class="sourceCode r"><code class="sourceCode r">kegg_cluster2 &lt;-<span class="st"> </span><span class="kw">enrichr</span>(<span class="dt">genes =</span> genes_cluster2,<span class="dt">databases =</span> <span class="st">&quot;KEGG_2019_Human&quot;</span>)
+kegg_cluster2 &lt;-<span class="st"> </span>kegg_cluster2<span class="op">$</span>KEGG_<span class="dv">2019</span>_Human
 kegg_cluster2 &lt;-<span class="st"> </span>kegg_cluster2[<span class="kw">order</span>(kegg_cluster2<span class="op">$</span>P.value),]
 kegg_cluster2[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]
 
 <span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">20</span>,<span class="dv">2</span>,<span class="dv">2</span>))
-<span class="kw">barplot</span>( <span class="op">-</span><span class="kw">log10</span>(kegg_cluster2<span class="op">$</span>P.value[<span class="dv">15</span><span class="op">:</span><span class="dv">1</span>]), <span class="dt">horiz =</span> T, <span class="dt">names.arg =</span> kegg_cluster2<span class="op">$</span>Term[<span class="dv">15</span><span class="op">:</span><span class="dv">1</span>],<span class="dt">las=</span><span class="dv">1</span>)</code></pre></div>
+<span class="kw">barplot</span>( <span class="op">-</span><span class="kw">log10</span>(kegg_cluster2<span class="op">$</span>P.value[<span class="dv">15</span><span class="op">:</span><span class="dv">1</span>]), <span class="dt">horiz =</span> T, <span class="dt">names.arg =</span> kegg_cluster2<span class="op">$</span>Term[<span class="dv">15</span><span class="op">:</span><span class="dv">1</span>],<span class="dt">las=</span><span class="dv">1</span>)</code></pre>
 <img src="lab_functional_files/figure-html/unnamed-chunk-7-1.svg" width="960" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p><i class="fas fa-comments"></i> <strong>Exploratory Questions</strong></p>
@@ -687,6 +714,7 @@ kegg_cluster2[<span class="dv">1</span><span class="op">:</span><span class="dv"
 </tr>
 </tbody>
 </table>
+<p>For this exercise, the database files are available at <a href="https://github.com/NBISweden/course_rnaseq/tree/master/data">this location</a>. You need the whole directory labelled <strong>MSigDB_files</strong>. Place this directory under a directory named <code>data</code> in your current working directory. Otherwise, set the path appropriately.</p>
 <p>As you could already notice, the differences in gene expression between days t0 to t24 are very clear, but not the ones from t2. Here we will illustrate a gene set enrichment comparing t2 to t0 in order to explore which pathways are UP or DOWN regulated at the first 2 hours of the experiment.</p>
 <div class="instruction">
 <p><i class="fas fa-exclamation-circle"></i> Here you would use the logFC values you obtained from differential expression. But for simplicity and reduce dependency on other parts of the course, we are using a simple difference in mean expression.</p>
@@ -695,20 +723,20 @@ kegg_cluster2[<span class="dv">1</span><span class="op">:</span><span class="dv"
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a gene rank based on the gene expression</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a gene rank based on the gene expression</span>
 mean_t0 &lt;-<span class="st"> </span><span class="kw">rowMeans</span>( logcpm[,metadata<span class="op">$</span>Time <span class="op">==</span><span class="st"> &quot;t0&quot;</span>] )
 mean_t2 &lt;-<span class="st"> </span><span class="kw">rowMeans</span>( logcpm[,metadata<span class="op">$</span>Time <span class="op">==</span><span class="st"> &quot;t2&quot;</span>] )
 gene_rank &lt;-<span class="st"> </span>mean_t0 <span class="op">-</span><span class="st"> </span>mean_t2
 
-<span class="co"># Load halmark pathways</span>
-hallmark_pathways &lt;-<span class="st"> </span><span class="kw">gmtPathways</span>(<span class="st">&quot;data/MSigDB_files/h.all.v6.2.symbols.gmt.txt&quot;</span>)</code></pre></div>
+<span class="co"># Load hallmark pathways</span>
+hallmark_pathways &lt;-<span class="st"> </span><span class="kw">gmtPathways</span>(<span class="st">&quot;data/MSigDB_files/h.all.v6.2.symbols.gmt.txt&quot;</span>)</code></pre>
 </div>
 <p>Once our list of genes are sorted (from highest to lowest expression in t2), we can proceed with the enrichment itself. Here, we will be using the <code>fgsea()</code> function. This will result in a table containing information for several pathways. We can then sort and filter those pathways to visualize only the top ones. You can select/filter them by either <code>p-value</code> or normalized enrichemnet score (<code>NES</code>).</p>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Perform enrichemnt analysis</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Perform enrichemnt analysis</span>
 fgseaRes &lt;-<span class="st"> </span><span class="kw">fgsea</span>( <span class="dt">pathways=</span>hallmark_pathways, <span class="dt">stats=</span>gene_rank, <span class="dt">minSize=</span><span class="dv">15</span>, <span class="dt">maxSize=</span><span class="dv">500</span>, <span class="dt">nperm=</span><span class="dv">10000</span>)
 
 <span class="co"># Filter the results table to show only the top 10 UP and DOWN regulated processes (optional)</span>
@@ -717,7 +745,7 @@ topPathwaysDown &lt;-<span class="st"> </span>fgseaRes[ES <span class="op">&lt;<
 topPathways &lt;-<span class="st"> </span><span class="kw">c</span>(topPathwaysUp, <span class="kw">rev</span>(topPathwaysDown))
 
 <span class="co"># Nice summary table (shown as a plot)</span>
-<span class="kw">plotGseaTable</span>(hallmark_pathways[topPathways], gene_rank, fgseaRes, <span class="dt">gseaParam =</span> <span class="fl">0.5</span>)</code></pre></div>
+<span class="kw">plotGseaTable</span>(hallmark_pathways[topPathways], gene_rank, fgseaRes, <span class="dt">gseaParam =</span> <span class="fl">0.5</span>)</code></pre>
 <img src="lab_functional_files/figure-html/unnamed-chunk-9-1.svg" width="960" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p><i class="fas fa-comments"></i> <strong>Exploratory Questions</strong></p>
@@ -733,10 +761,10 @@ topPathways &lt;-<span class="st"> </span><span class="kw">c</span>(topPathwaysU
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">topPathways
+<pre class="sourceCode r"><code class="sourceCode r">topPathways
 
 <span class="co"># Nice plot to see enrichment of one specific pathway</span>
-<span class="kw">plotEnrichment</span>(hallmark_pathways[[<span class="st">&quot;HALLMARK_MYC_TARGETS_V2&quot;</span>]],  gene_rank)</code></pre></div>
+<span class="kw">plotEnrichment</span>(hallmark_pathways[[<span class="st">&quot;HALLMARK_MYC_TARGETS_V2&quot;</span>]],  gene_rank)</code></pre>
 <img src="lab_functional_files/figure-html/unnamed-chunk-10-1.svg" width="960" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p><i class="fas fa-comments"></i> <strong>Exploratory Questions</strong></p>
@@ -754,12 +782,12 @@ R
 <div id="online-enrichment-tools" class="section level2">
 <h2><span class="header-section-number">2.3</span> Online enrichment tools:</h2>
 <p>Below you can find a list with the most commonly used online enrichment tools. Each one differs a bit on what they can do. The packages are sorted in order, we would like you to work on the workshop.</p>
-<table style="width:22%;">
+<table>
 <colgroup>
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -819,9 +847,9 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clip &lt;-<span class="st"> </span><span class="kw">pipe</span>(<span class="st">&quot;pbcopy&quot;</span>, <span class="st">&quot;w&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">clip &lt;-<span class="st"> </span><span class="kw">pipe</span>(<span class="st">&quot;pbcopy&quot;</span>, <span class="st">&quot;w&quot;</span>)
 <span class="kw">write.table</span>(genes_cluster1, <span class="dt">file=</span>clip, <span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)         
-<span class="kw">close</span>(clip)</code></pre></div>
+<span class="kw">close</span>(clip)</code></pre>
 </div>
 <hr />
 </div>
