@@ -35,6 +35,8 @@ library(DESeq2) # rna-seq
 library(edgeR) # rna-seq
 ```
 
+The raw data and metadata can be downloaded from [this location](https://github.com/NBISweden/course_rnaseq/tree/master/data). The files needed are **counts_raw.txt** and **metadata_raw.csv**. Other files are created as intermediates during this workflow. They may be useful if you cannot get a step to work. Place the files in a directory named `data` in your current working directory.
+
 # Data preprocessing
 
 Data preprocessing is done in R. First, we read in the count table.
@@ -78,7 +80,7 @@ We can check if any samples need to be discarded based on the number of genes de
 abline(h=median(colSums(cr>5)))}
 ```
 
-None of the samples look bad enough to be removed. 
+None of the samples look bad enough to be removed.
 
 <i class="fas fa-comments"></i> What does `cr>5` do? Why did we use 5? Is it better than using `cr>0`?
 
@@ -96,6 +98,8 @@ Some of the genes are not detected across most samples. These genes can be disca
 keepgenes <- rowSums(edgeR::cpm(cr)>1) >= 2
 cf <- cr[keepgenes,]
 ```
+
+<i class="fas fa-comments"></i> How would the results change if we used total number of samples (ie; 12 for this dataset) in the code above?
 
 ```{r}
 boxplot(log10(as.matrix(cf)+1),ylab=expression('Log'[10]~'Read counts'),las=2,
@@ -238,7 +242,7 @@ par(mfrow=c(1,1))
 
 In this section, we are strictly not running any quantitative analyses or statistical test. This is a QC of the counts. We are running correlation to check similarity of gene counts between samples. We are running distance based clustering and PCA to estimate similarity between samples. This should give us an idea of the variation within your sample groups and detect possible outliers or mis-labelled samples.
 
-We will use the variance stabilized counts (VST) from the previous step for all exploratory analyses.
+We will use the variance stabilized counts (VST) from the previous step for all exploratory analyses. Otherwise, the files below can also be copied from the data location mentioned at the beginning of this document.
 
 ```{r}
 cv <- read.table("./data/counts_vst.txt",header=TRUE)
@@ -558,14 +562,6 @@ res3 <- results(dg,name="Time_t6_vs_t0",alpha=0.05)
 summary(res3)
 ```
 
-```{r,fig.height=4,fig.width=8}
-par(mfrow=c(1,2))
-plot(density(na.omit(res1$log2FoldChange)),main="log2FoldChange")
-plot(density(na.omit(res1$padj)),main="BH adj pval")
-par(mfrow=c(1,1))
-```
-
-
 You can also build up the comparison using **contrasts**. Contrats need the condition, level to compare and the reference level (base level). For example, `results(dg,contrast=c("Time","t2","t0"),alpha=0.05)`.
 
 Note that in both cases above, `t0` is the reference level and other levels are compared to this. Therefore, a fold-change of 2 would mean that, a gene is 2 fold higher expressed in the test level compared to `t0`.
@@ -578,7 +574,7 @@ head(res1)
 
 The results table contains mean expression value (baseMean), log2 fold change (log2FoldChange), log2 fold change standard error (lfcSE), wald test statistic (stat), wald test p-value (pvalue) and BH adjusted p-value (padj) for each gene.
 
-It is a good idea to look at the distribution on unadjusted p-values. 
+It is a good idea to look at the distribution on unadjusted p-values.
 
 ```{r,fig.height=5,fig.width=5}
 hist(res1$pvalue[res1$baseMean>1],main="res1 Pval distribution",xlab="P-values")
@@ -642,7 +638,7 @@ plot(density(na.omit(lres1$padj)),main="BH adj pval")
 par(mfrow=c(1,1))
 ```
 
-```{r}
+```{r,eval=FALSE,include=FALSE}
 # check rownames are same
 all.equal(rownames(res1),rownames(lres1))
 dfr <- data.frame(gene=rownames(res1),lfc=res1$log2FoldChange,slfc=lres1$log2FoldChange,diff=abs(res1$log2FoldChange-lres1$log2FoldChange))

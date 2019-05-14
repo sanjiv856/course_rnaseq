@@ -9,62 +9,87 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Roy Francis • 13-May-2019" />
+<meta name="author" content="Roy Francis • 14-May-2019" />
 
 
 <title>DGE Workflow</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="lab_dge_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="lab_dge_files/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="lab_dge_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lab_dge_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lab_dge_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="lab_dge_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="lab_dge_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="lab_dge_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="lab_dge_files/navigation-1.1/tabsets.js"></script>
+<link href="lab_dge_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="lab_dge_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 
 </style>
 <script>
@@ -483,7 +508,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">DGE Workflow</h1>
 <h3 class="subtitle">Workshop on RNA-Seq</h3>
-<h4 class="author"><b>Roy Francis</b> • 13-May-2019</h4>
+<h4 class="author"><b>Roy Francis</b> • 14-May-2019</h4>
 
 </div>
 
@@ -492,6 +517,7 @@ div.tocify {
 <!-- custom fonts -->
 <p><link href="https://fonts.googleapis.com/css?family=Roboto|Source+Sans+Pro:300,400,600|Ubuntu+Mono&amp;subset=latin-ext" rel="stylesheet"></p>
 <p><br></p>
+<p>The raw data and metadata can be downloaded from <a href="https://github.com/NBISweden/course_rnaseq/tree/master/data">this location</a>. The files needed are <strong>counts_raw.txt</strong> and <strong>metadata_raw.csv</strong>. Other files are created as intermediates during this workflow. They may be useful if you cannot get a step to work. Place the files in a directory named <code>data</code> in your current working directory.</p>
 <div id="data-preprocessing" class="section level1">
 <h1><span class="header-section-number">1</span> Data preprocessing</h1>
 <p>Data preprocessing is done in R. First, we read in the count table.</p>
@@ -499,9 +525,9 @@ div.tocify {
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cr &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/count_raw.txt&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+<pre class="sourceCode r"><code class="sourceCode r">cr &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/count_raw.txt&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
 <span class="kw">head</span>(cr)
-<span class="kw">str</span>(cr)</code></pre></div>
+<span class="kw">str</span>(cr)</code></pre>
 <pre><code>##                 Sample_1 Sample_2 Sample_3 Sample_4 Sample_5 Sample_6
 ## ENSG00000000003      321      303      204      492      455      359
 ## ENSG00000000005        0        0        0        0        0        0
@@ -536,10 +562,10 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mr &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;./data/metadata_raw.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>,<span class="dt">stringsAsFactors=</span>F)
+<pre class="sourceCode r"><code class="sourceCode r">mr &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;./data/metadata_raw.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>,<span class="dt">stringsAsFactors=</span>F)
 <span class="kw">rownames</span>(mr) &lt;-<span class="st"> </span>mr<span class="op">$</span>Sample_ID
 <span class="kw">head</span>(mr)
-<span class="kw">str</span>(mr)</code></pre></div>
+<span class="kw">str</span>(mr)</code></pre>
 <pre><code>##          Sample_ID Sample_Name Time Replicate Cell
 ## Sample_1  Sample_1        t0_A   t0         A A431
 ## Sample_2  Sample_2        t0_B   t0         B A431
@@ -559,7 +585,7 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(<span class="kw">colnames</span>(cr),<span class="kw">rownames</span>(mr))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(<span class="kw">colnames</span>(cr),<span class="kw">rownames</span>(mr))</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <p>Let’s create a boxplot to visualise the distribution of counts.</p>
@@ -567,8 +593,8 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cr)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,
-        <span class="dt">main=</span><span class="st">&quot;Raw data&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cr)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,
+        <span class="dt">main=</span><span class="st">&quot;Raw data&quot;</span>)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-6-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>The median values are zero across all samples. This is a sign that the data set would benefit from a low count filtering.</p>
@@ -577,8 +603,8 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{<span class="kw">barplot</span>(<span class="kw">colSums</span>(cr<span class="op">&gt;</span><span class="dv">5</span>),<span class="dt">ylab=</span><span class="st">&quot;Number of detected genes&quot;</span>,<span class="dt">las=</span><span class="dv">2</span>)
-<span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">median</span>(<span class="kw">colSums</span>(cr<span class="op">&gt;</span><span class="dv">5</span>)))}</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">{<span class="kw">barplot</span>(<span class="kw">colSums</span>(cr<span class="op">&gt;</span><span class="dv">5</span>),<span class="dt">ylab=</span><span class="st">&quot;Number of detected genes&quot;</span>,<span class="dt">las=</span><span class="dv">2</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">median</span>(<span class="kw">colSums</span>(cr<span class="op">&gt;</span><span class="dv">5</span>)))}</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-7-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>None of the samples look bad enough to be removed.</p>
@@ -588,8 +614,8 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{<span class="kw">barplot</span>(<span class="kw">rowSums</span>(cr<span class="op">&gt;</span><span class="dv">5</span>),<span class="dt">xlab=</span><span class="st">&quot;Genes&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Number of samples&quot;</span>,<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">names.arg=</span><span class="st">&quot;&quot;</span>)
-<span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">median</span>(<span class="kw">rowSums</span>(cr<span class="op">&gt;</span><span class="dv">5</span>)))}</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">{<span class="kw">barplot</span>(<span class="kw">rowSums</span>(cr<span class="op">&gt;</span><span class="dv">5</span>),<span class="dt">xlab=</span><span class="st">&quot;Genes&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Number of samples&quot;</span>,<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">names.arg=</span><span class="st">&quot;&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">median</span>(<span class="kw">rowSums</span>(cr<span class="op">&gt;</span><span class="dv">5</span>)))}</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-8-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>Some of the genes are not detected across most samples. These genes can be discarded. Below, rather than using zero are minimum value for detection, we used minimum of 1 count-per-million (CPM). This ignores noisy background counts. And we want to keep genes that have minimum 1 CPM across 2 samples (since each of test groups consist of 3 samples).</p>
@@ -597,16 +623,17 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># remove genes with low counts</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># remove genes with low counts</span>
 keepgenes &lt;-<span class="st"> </span><span class="kw">rowSums</span>(edgeR<span class="op">::</span><span class="kw">cpm</span>(cr)<span class="op">&gt;</span><span class="dv">1</span>) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span>
-cf &lt;-<span class="st"> </span>cr[keepgenes,]</code></pre></div>
+cf &lt;-<span class="st"> </span>cr[keepgenes,]</code></pre>
 </div>
+<p><i class="fas fa-comments"></i> How would the results change if we used total number of samples (ie; 12 for this dataset) in the code above?</p>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cf)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,
-        <span class="dt">main=</span><span class="st">&quot;Filtered data&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cf)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,
+        <span class="dt">main=</span><span class="st">&quot;Filtered data&quot;</span>)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-10-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>The missingness in the data set is reduced. The filtering process has removed 44995 genes with low counts.</p>
@@ -615,7 +642,7 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(<span class="kw">colnames</span>(cf),<span class="kw">rownames</span>(mr))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(<span class="kw">colnames</span>(cf),<span class="kw">rownames</span>(mr))</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <p>At this point, we can save the filtered data.</p>
@@ -623,7 +650,7 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(cf,<span class="st">&quot;./data/counts_filtered.txt&quot;</span>,<span class="dt">col.names=</span>T,<span class="dt">quote=</span>F,<span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>,<span class="dt">dec=</span><span class="st">&quot;.&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(cf,<span class="st">&quot;./data/counts_filtered.txt&quot;</span>,<span class="dt">col.names=</span>T,<span class="dt">quote=</span>F,<span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>,<span class="dt">dec=</span><span class="st">&quot;.&quot;</span>)</code></pre>
 </div>
 </div>
 <div id="normalisation" class="section level1">
@@ -637,16 +664,16 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/counts_filtered.txt&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+<pre class="sourceCode r"><code class="sourceCode r">cf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/counts_filtered.txt&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
 mr &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;./data/metadata_raw.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>,<span class="dt">stringsAsFactors=</span>F)
-<span class="kw">rownames</span>(mr) &lt;-<span class="st"> </span>mr<span class="op">$</span>Sample_ID</code></pre></div>
+<span class="kw">rownames</span>(mr) &lt;-<span class="st"> </span>mr<span class="op">$</span>Sample_ID</code></pre>
 </div>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cc &lt;-<span class="st"> </span>edgeR<span class="op">::</span><span class="kw">cpm</span>(cf)
-<span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cc)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;CPM&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">cc &lt;-<span class="st"> </span>edgeR<span class="op">::</span><span class="kw">cpm</span>(cf)
+<span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cc)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;CPM&quot;</span>)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-14-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>But, CPM data has some drawbacks. It is not suitable for within-sample comparisons. The total number of reads per sample varies from sample to sample. This also makes it harder to compare one experiment to another. In addition, gene length is not controlled for in this correction. RPKM/FPKM normalisations correct for gene length, but they are not recommended because they are not comparable between samples.</p>
@@ -655,7 +682,7 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; @title Compute TPM from a read count matrix</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; @title Compute TPM from a read count matrix</span>
 <span class="co">#&#39; @param counts A numeric data.frame of read counts with samples (columns) and genes (rows).</span>
 <span class="co">#&#39; @param len A vector of gene cds length equal to number of rows of dfr.</span>
 <span class="co">#&#39;</span>
@@ -664,35 +691,35 @@ R
 tpm &lt;-<span class="st"> </span><span class="cf">function</span>(counts,len) {
   x &lt;-<span class="st"> </span>counts<span class="op">/</span>len
   <span class="kw">return</span>(<span class="kw">t</span>(<span class="kw">t</span>(x)<span class="op">*</span><span class="fl">1e6</span><span class="op">/</span><span class="kw">colSums</span>(x)))
-}</code></pre></div>
+}</code></pre>
 </div>
 <p>We read in the annotation data, remove duplicated ensembl IDs and compute gene lengths.</p>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;./data/human_genes.txt&quot;</span>,<span class="dt">header=</span>T,<span class="dt">stringsAsFactors=</span>F)
+<pre class="sourceCode r"><code class="sourceCode r">g &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;./data/human_genes.txt&quot;</span>,<span class="dt">header=</span>T,<span class="dt">stringsAsFactors=</span>F)
 g &lt;-<span class="st"> </span>g[<span class="op">!</span><span class="kw">duplicated</span>(g<span class="op">$</span>ensembl_gene_id),]
 g<span class="op">$</span>len &lt;-<span class="st"> </span>g<span class="op">$</span>end_position<span class="op">-</span>g<span class="op">$</span>start_position
-<span class="kw">rownames</span>(g) &lt;-<span class="st"> </span>g<span class="op">$</span>ensembl_gene_id</code></pre></div>
+<span class="kw">rownames</span>(g) &lt;-<span class="st"> </span>g<span class="op">$</span>ensembl_gene_id</code></pre>
 </div>
 <p>Next, we find shared genes between count data and annotation data and match their order.</p>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">igenes &lt;-<span class="st"> </span><span class="kw">intersect</span>(<span class="kw">rownames</span>(cf),g<span class="op">$</span>ensembl_gene_id)
+<pre class="sourceCode r"><code class="sourceCode r">igenes &lt;-<span class="st"> </span><span class="kw">intersect</span>(<span class="kw">rownames</span>(cf),g<span class="op">$</span>ensembl_gene_id)
 g1 &lt;-<span class="st"> </span>g[igenes,]
 cf1 &lt;-<span class="st"> </span>cf[igenes,]
-<span class="kw">all.equal</span>(<span class="kw">rownames</span>(cf1),g1<span class="op">$</span>ensembl_gene_id)</code></pre></div>
+<span class="kw">all.equal</span>(<span class="kw">rownames</span>(cf1),g1<span class="op">$</span>ensembl_gene_id)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ct &lt;-<span class="st"> </span><span class="kw">tpm</span>(cf1,g1<span class="op">$</span>len)
-<span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(ct)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;TPM&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">ct &lt;-<span class="st"> </span><span class="kw">tpm</span>(cf1,g1<span class="op">$</span>len)
+<span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(ct)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;TPM&quot;</span>)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-18-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 </div>
@@ -703,12 +730,12 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DESeq2)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DESeq2)
 mr<span class="op">$</span>Time &lt;-<span class="st"> </span><span class="kw">factor</span>(mr<span class="op">$</span>Time)
 d &lt;-<span class="st"> </span><span class="kw">DESeqDataSetFromMatrix</span>(<span class="dt">countData=</span>cf,<span class="dt">colData=</span>mr,<span class="dt">design=</span><span class="op">~</span>Time)
 d &lt;-<span class="st"> </span>DESeq2<span class="op">::</span><span class="kw">estimateSizeFactors</span>(d,<span class="dt">type=</span><span class="st">&quot;ratio&quot;</span>)
 cd &lt;-<span class="st"> </span><span class="kw">counts</span>(d,<span class="dt">normalized=</span><span class="ot">TRUE</span>)
-<span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cd)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;DESeq2&quot;</span>)</code></pre></div>
+<span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cd)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;DESeq2&quot;</span>)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-19-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 </div>
@@ -719,14 +746,14 @@ cd &lt;-<span class="st"> </span><span class="kw">counts</span>(d,<span class="d
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DESeq2)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DESeq2)
 mr<span class="op">$</span>Time &lt;-<span class="st"> </span><span class="kw">factor</span>(mr<span class="op">$</span>Time)
 d &lt;-<span class="st"> </span><span class="kw">DESeqDataSetFromMatrix</span>(<span class="dt">countData=</span>cf,<span class="dt">colData=</span>mr,<span class="dt">design=</span><span class="op">~</span>Time)
 d &lt;-<span class="st"> </span>DESeq2<span class="op">::</span><span class="kw">estimateSizeFactors</span>(d,<span class="dt">type=</span><span class="st">&quot;ratio&quot;</span>)
 d &lt;-<span class="st"> </span>DESeq2<span class="op">::</span><span class="kw">estimateDispersions</span>(d)
 cv &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">assay</span>(<span class="kw">varianceStabilizingTransformation</span>(d,<span class="dt">blind=</span>T)),<span class="dt">check.names=</span>F)
 <span class="cf">if</span>(<span class="op">!</span><span class="kw">file.exists</span>(<span class="st">&quot;./data/counts_vst.txt&quot;</span>)) <span class="kw">write.table</span>(cv,<span class="st">&quot;./data/counts_vst.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>,<span class="dt">dec=</span><span class="st">&quot;.&quot;</span>,<span class="dt">quote=</span><span class="ot">FALSE</span>)
-<span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cv)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;VST&quot;</span>)</code></pre></div>
+<span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cv)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;VST&quot;</span>)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-20-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>The effect of VST transformation can be clearly seen in a mean vs variance plot.</p>
@@ -734,13 +761,13 @@ cv &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span cla
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rowVar &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">apply</span>(x,<span class="dv">1</span>,var)
+<pre class="sourceCode r"><code class="sourceCode r">rowVar &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">apply</span>(x,<span class="dv">1</span>,var)
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(<span class="kw">log10</span>(<span class="kw">rowMeans</span>(cf)<span class="op">+</span><span class="dv">1</span>),<span class="kw">log10</span>(<span class="kw">rowVar</span>(cf)<span class="op">+</span><span class="dv">1</span>),<span class="dt">xlab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Mean count&#39;</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Variance&#39;</span>),<span class="dt">main=</span><span class="st">&quot;Filtered&quot;</span>)
 <span class="kw">plot</span>(<span class="kw">log10</span>(<span class="kw">rowMeans</span>(ct)<span class="op">+</span><span class="dv">1</span>),<span class="kw">log10</span>(<span class="kw">rowVar</span>(ct)<span class="op">+</span><span class="dv">1</span>),<span class="dt">xlab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Mean count&#39;</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Variance&#39;</span>),<span class="dt">main=</span><span class="st">&quot;TPM&quot;</span>)
 <span class="kw">plot</span>(<span class="kw">log10</span>(<span class="kw">rowMeans</span>(cd)<span class="op">+</span><span class="dv">1</span>),<span class="kw">log10</span>(<span class="kw">rowVar</span>(cd)<span class="op">+</span><span class="dv">1</span>),<span class="dt">xlab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Mean count&#39;</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Variance&#39;</span>),<span class="dt">main=</span><span class="st">&quot;DESeq2&quot;</span>)
 <span class="kw">plot</span>(<span class="kw">rowMeans</span>(cv),<span class="kw">rowVar</span>(cv),<span class="dt">xlab=</span><span class="st">&#39;Mean count&#39;</span>,<span class="dt">ylab=</span><span class="st">&#39;Variance&#39;</span>,<span class="dt">main=</span><span class="st">&quot;VST&quot;</span>)
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-21-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>For RNA-seq data, as the mean count value increases, the variance increases. There is a strong almost linear relationship as seen in the figures. The statistical methods such as PCA expects similar variance across the range of mean values. If not, the higher variance genes will contribute more than the lower variance genes. Such data is said to be heteroscedastic and needs to be corrected. Correction using log transformation (with pseudocount) now gives inflates the contribution of the low variance genes. To obtain similar variance across the whole range of mean values, DESeq2 offers two methods VST (variance stabilising transformation) and RLOG (regularised log transformation).</p>
@@ -750,12 +777,12 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>))
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>))
 <span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cf)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;Filtered&quot;</span>)
 <span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(ct)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;TPM&quot;</span>)
 <span class="kw">boxplot</span>(<span class="kw">log10</span>(<span class="kw">as.matrix</span>(cd)<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylab=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Read counts&#39;</span>),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;DESeq2&quot;</span>)
 <span class="kw">boxplot</span>(<span class="kw">as.matrix</span>(cv),<span class="dt">ylab=</span><span class="st">&#39;Read counts&#39;</span>,<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">main=</span><span class="st">&quot;VST&quot;</span>)
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-22-1.svg" width="864" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p><i class="fas fa-comments"></i> Would it be possible to have one perfect normalisation method for all types of analyses? Is there any drawback to using gene length corrected counts in differential gene expression analyses?</p>
@@ -764,14 +791,14 @@ R
 <div id="exploratory" class="section level1">
 <h1><span class="header-section-number">3</span> Exploratory</h1>
 <p>In this section, we are strictly not running any quantitative analyses or statistical test. This is a QC of the counts. We are running correlation to check similarity of gene counts between samples. We are running distance based clustering and PCA to estimate similarity between samples. This should give us an idea of the variation within your sample groups and detect possible outliers or mis-labelled samples.</p>
-<p>We will use the variance stabilized counts (VST) from the previous step for all exploratory analyses.</p>
+<p>We will use the variance stabilized counts (VST) from the previous step for all exploratory analyses. Otherwise, the files below can also be copied from the data location mentioned at the beginning of this document.</p>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cv &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/counts_vst.txt&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+<pre class="sourceCode r"><code class="sourceCode r">cv &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/counts_vst.txt&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
 mr &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;./data/metadata_raw.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>,<span class="dt">stringsAsFactors=</span>F)
-<span class="kw">rownames</span>(mr) &lt;-<span class="st"> </span>mr<span class="op">$</span>Sample_ID</code></pre></div>
+<span class="kw">rownames</span>(mr) &lt;-<span class="st"> </span>mr<span class="op">$</span>Sample_ID</code></pre>
 </div>
 <div id="correlation" class="section level2">
 <h2><span class="header-section-number">3.1</span> Correlation</h2>
@@ -781,11 +808,12 @@ mr &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dmat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">cor</span>(cv,<span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>))
+<pre class="sourceCode r"><code class="sourceCode r">dmat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">cor</span>(cv,<span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>))
 
 <span class="kw">library</span>(pheatmap)
 <span class="kw">pheatmap</span>(dmat,<span class="dt">border_color=</span><span class="ot">NA</span>,<span class="dt">annotation_col=</span>mr[,<span class="st">&quot;Time&quot;</span>,<span class="dt">drop=</span>F],
-         <span class="dt">annotation_row=</span>mr[,<span class="st">&quot;Time&quot;</span>,<span class="dt">drop=</span>F],<span class="dt">annotation_legend=</span>T)</code></pre></div>
+         <span class="dt">annotation_row=</span>mr[,<span class="st">&quot;Time&quot;</span>,<span class="dt">drop=</span>F],<span class="dt">annotation_legend=</span>T)</code></pre>
+<img src="lab_dge_files/figure-html/unnamed-chunk-24-1.svg" width="576" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>In the matrix, red colour denotes higher correlation (higher similarity) and blue denotes lower correlation (lower similarity). <code>pheatmap()</code> also hierarchically clusters rows and columns based on correlation values. The dendrograms show how samples cluster. Annotation colours denote <strong>Time</strong> groups. Notice that samples group by <strong>Time</strong>.</p>
 </div>
@@ -796,11 +824,11 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcaobj &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span class="dt">x=</span><span class="kw">t</span>(cv))
+<pre class="sourceCode r"><code class="sourceCode r">pcaobj &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span class="dt">x=</span><span class="kw">t</span>(cv))
 {<span class="kw">barplot</span>(<span class="kw">round</span>(pcaobj<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="kw">sum</span>(pcaobj<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">100</span>,<span class="dv">2</span>),<span class="dt">las=</span><span class="dv">2</span>,
         <span class="dt">names.arg=</span><span class="kw">colnames</span>(pcaobj<span class="op">$</span>x),<span class="dt">ylab=</span><span class="st">&quot;% Variance explained&quot;</span>,
         <span class="dt">xlab=</span><span class="st">&quot;PCA principal components&quot;</span>)
-<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)}</code></pre></div>
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)}</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-25-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>The first two principal components in total explain 85% (75%+10%) of the variance in the data set. This means a scatterplot of PC1 vs PC2 can help to visualise the most important trend in the data. Then we merge the rotated data with the metadata and plot a scatterplot coloured by our variable of interest (Time).</p>
@@ -808,12 +836,12 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcamat1 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(pcaobj<span class="op">$</span>x)
+<pre class="sourceCode r"><code class="sourceCode r">pcamat1 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(pcaobj<span class="op">$</span>x)
 pcamat2 &lt;-<span class="st"> </span><span class="kw">merge</span>(pcamat1,mr,<span class="dt">by=</span><span class="dv">0</span>)
 
 <span class="kw">ggplot</span>(pcamat2,<span class="kw">aes</span>(PC1,PC2,<span class="dt">colour=</span>Time))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-26-1.svg" width="432" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>Samples cluster by the <strong>Time</strong> variable as expected.</p>
@@ -822,13 +850,13 @@ pcamat2 &lt;-<span class="st"> </span><span class="kw">merge</span>(pcamat1,mr,<
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(pcamat2,<span class="kw">aes</span>(PC1,PC3,<span class="dt">colour=</span>Time))<span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(pcamat2,<span class="kw">aes</span>(PC1,PC3,<span class="dt">colour=</span>Time))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()
 p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(pcamat2,<span class="kw">aes</span>(PC2,PC3,<span class="dt">colour=</span>Time))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()
-ggpubr<span class="op">::</span><span class="kw">ggarrange</span>(p1,p2,<span class="dt">nrow=</span><span class="dv">1</span>,<span class="dt">ncol=</span><span class="dv">2</span>)</code></pre></div>
+ggpubr<span class="op">::</span><span class="kw">ggarrange</span>(p1,p2,<span class="dt">nrow=</span><span class="dv">1</span>,<span class="dt">ncol=</span><span class="dv">2</span>)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-27-1.svg" width="768" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>An alternative way to create a PCA plot is directly from the DESeq2 object using the DESeq2 function <code>plotPCA()</code>.</p>
@@ -836,7 +864,7 @@ ggpubr<span class="op">::</span><span class="kw">ggarrange</span>(p1,p2,<span cl
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotPCA</span>(<span class="kw">varianceStabilizingTransformation</span>(d),<span class="dt">intgroup=</span><span class="st">&quot;Time&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotPCA</span>(<span class="kw">varianceStabilizingTransformation</span>(d),<span class="dt">intgroup=</span><span class="st">&quot;Time&quot;</span>)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-28-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 </div>
@@ -847,11 +875,12 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dmat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(<span class="kw">t</span>(cv)))
+<pre class="sourceCode r"><code class="sourceCode r">dmat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(<span class="kw">t</span>(cv)))
 
 <span class="kw">library</span>(pheatmap)
 <span class="kw">pheatmap</span>(dmat,<span class="dt">border_color=</span><span class="ot">NA</span>,<span class="dt">annotation_col=</span>mr[,<span class="st">&quot;Time&quot;</span>,<span class="dt">drop=</span>F],
-         <span class="dt">annotation_row=</span>mr[,<span class="st">&quot;Time&quot;</span>,<span class="dt">drop=</span>F],<span class="dt">annotation_legend=</span>T)</code></pre></div>
+         <span class="dt">annotation_row=</span>mr[,<span class="st">&quot;Time&quot;</span>,<span class="dt">drop=</span>F],<span class="dt">annotation_legend=</span>T)</code></pre>
+<img src="lab_dge_files/figure-html/unnamed-chunk-29-1.svg" width="576" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>Hierarchically clustered sample-to-sample euclidean distance matrix. Larger distances mean lower similarity and vice-versa. In the matrix, red colour denotes larger distance (lower similarity) and blue denotes small distance (higher similarity). Annotation colours denote <strong>Time</strong> groups. The dendrogram helps to visualise sample clustering. Notice that samples group by <strong>Time</strong>.</p>
 <p><i class="fas fa-clipboard-list"></i> Try to run the PCA using one of the other normalisation methods, say logCPM and/or DESeq2 normalised counts.<br />
@@ -865,9 +894,9 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/counts_filtered.txt&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+<pre class="sourceCode r"><code class="sourceCode r">cf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/counts_filtered.txt&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
 mr &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;./data/metadata_raw.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>,<span class="dt">stringsAsFactors=</span>F)
-<span class="kw">rownames</span>(mr) &lt;-<span class="st"> </span>mr<span class="op">$</span>Sample_ID</code></pre></div>
+<span class="kw">rownames</span>(mr) &lt;-<span class="st"> </span>mr<span class="op">$</span>Sample_ID</code></pre>
 </div>
 <p>The data is converted to a DESeq2 object. The GLM model we use is simple since we only have one variable of interest <code>~Time</code>.</p>
 <p>If we had other covariates to control for, we would add them to the model like so <code>~var+Time</code>. The variable of interest appears in the end. This model means find differentially expressed genes between groups under ‘time’ variable while controlling for the effect of ‘var’. Similarily, batch effects can be controlled by specifying them in the model <code>~batch+Time</code>.</p>
@@ -875,9 +904,9 @@ mr &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DESeq2)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DESeq2)
 mr<span class="op">$</span>Time &lt;-<span class="st"> </span><span class="kw">factor</span>(mr<span class="op">$</span>Time)
-d &lt;-<span class="st"> </span><span class="kw">DESeqDataSetFromMatrix</span>(<span class="dt">countData=</span>cf,<span class="dt">colData=</span>mr,<span class="dt">design=</span><span class="op">~</span>Time)</code></pre></div>
+d &lt;-<span class="st"> </span><span class="kw">DESeqDataSetFromMatrix</span>(<span class="dt">countData=</span>cf,<span class="dt">colData=</span>mr,<span class="dt">design=</span><span class="op">~</span>Time)</code></pre>
 </div>
 <div id="size-factors" class="section level2">
 <h2><span class="header-section-number">4.1</span> Size factors</h2>
@@ -886,13 +915,13 @@ d &lt;-<span class="st"> </span><span class="kw">DESeqDataSetFromMatrix</span>(<
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span>DESeq2<span class="op">::</span><span class="kw">estimateSizeFactors</span>(d,<span class="dt">type=</span><span class="st">&quot;ratio&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span>DESeq2<span class="op">::</span><span class="kw">estimateSizeFactors</span>(d,<span class="dt">type=</span><span class="st">&quot;ratio&quot;</span>)</code></pre>
 </div>
 <div class="optional">
 <p><b>Optional</b></p>
 <p>For those interested in the details of the <em>median-of-ratios</em> method, click below.</p>
 <p>
-<button class="btn btn-sm btn-primary btn-collapse btn-collapse-optional collapsed type=" button" data-toggle="collapse" data-target="#dge-size-factor" aria-expanded="false" aria-controls="dge-size-factor">
+&lt;button class=“btn btn-sm btn-primary btn-collapse btn-collapse-optional collapsed type=”button" data-toggle=“collapse” data-target=“#dge-size-factor” aria-expanded=“false” aria-controls=“dge-size-factor”&gt;
 </button>
 </p>
 <div id="dge-size-factor" class="collapse">
@@ -905,12 +934,12 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gm_mean =<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>){
+<pre class="sourceCode r"><code class="sourceCode r">gm_mean =<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>){
   <span class="kw">exp</span>(<span class="kw">sum</span>(<span class="kw">log</span>(x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>]), <span class="dt">na.rm=</span>na.rm) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x))
 }
 
 gmean &lt;-<span class="st"> </span><span class="kw">apply</span>(cf,<span class="dv">1</span>,gm_mean)
-<span class="kw">head</span>(gmean)</code></pre></div>
+<span class="kw">head</span>(gmean)</code></pre>
 <pre><code>## ENSG00000000003 ENSG00000000419 ENSG00000000457 ENSG00000000460 
 ##       479.11181       820.01611        81.68888       319.29571 
 ## ENSG00000001036 ENSG00000001084 
@@ -923,8 +952,8 @@ gmean &lt;-<span class="st"> </span><span class="kw">apply</span>(cf,<span class
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ratio &lt;-<span class="st"> </span>cf<span class="op">/</span>gmean
-<span class="kw">head</span>(ratio)[,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">ratio &lt;-<span class="st"> </span>cf<span class="op">/</span>gmean
+<span class="kw">head</span>(ratio)[,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre>
 <pre><code>##                  Sample_1  Sample_2  Sample_3 Sample_4  Sample_5
 ## ENSG00000000003 0.6699898 0.6324202 0.4257879 1.026900 0.9496739
 ## ENSG00000000419 0.8487638 0.8048622 0.5755984 1.159733 1.1743672
@@ -940,8 +969,8 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sf &lt;-<span class="st"> </span><span class="kw">apply</span>(ratio,<span class="dv">2</span>,median)
-sf</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">sf &lt;-<span class="st"> </span><span class="kw">apply</span>(ratio,<span class="dv">2</span>,median)
+sf</code></pre>
 <pre><code>##  Sample_1  Sample_2  Sample_3  Sample_4  Sample_5  Sample_6  Sample_7 
 ## 0.8975253 0.8407580 0.5086763 1.1263621 1.0931051 0.8123073 0.7558324 
 ##  Sample_8  Sample_9 Sample_10 Sample_11 Sample_12 
@@ -952,8 +981,8 @@ sf</code></pre></div>
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># deseq2 size factors</span>
-<span class="kw">sizeFactors</span>(d)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># deseq2 size factors</span>
+<span class="kw">sizeFactors</span>(d)</code></pre>
 <pre><code>##  Sample_1  Sample_2  Sample_3  Sample_4  Sample_5  Sample_6  Sample_7 
 ## 0.9003753 0.8437393 0.5106445 1.1276451 1.0941383 0.8133849 0.7553903 
 ##  Sample_8  Sample_9 Sample_10 Sample_11 Sample_12 
@@ -964,7 +993,7 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">sizeFactors</span>(d),<span class="kw">colSums</span>(cf),<span class="dt">xlab=</span><span class="st">&quot;Size factors&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Total counts&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">sizeFactors</span>(d),<span class="kw">colSums</span>(cf),<span class="dt">xlab=</span><span class="st">&quot;Size factors&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Total counts&quot;</span>)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-37-1.svg" width="432" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>The raw counts can then be divided by the size factor to yield normalised read counts.</p>
@@ -972,10 +1001,10 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># custom</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># custom</span>
 <span class="kw">head</span>(<span class="kw">t</span>(<span class="kw">t</span>(cf)<span class="op">/</span>sf))[,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]
 <span class="co"># deseq2</span>
-<span class="kw">head</span>(<span class="kw">counts</span>(d,<span class="dt">normalized=</span><span class="ot">TRUE</span>))[,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre></div>
+<span class="kw">head</span>(<span class="kw">counts</span>(d,<span class="dt">normalized=</span><span class="ot">TRUE</span>))[,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</code></pre>
 <pre><code>##                  Sample_1  Sample_2  Sample_3  Sample_4  Sample_5
 ## ENSG00000000003 357.65009 360.38907 401.04088 436.80445 416.24541
 ## ENSG00000000419 775.46562 785.00590 927.89851 844.31105 880.97655
@@ -1003,7 +1032,7 @@ R
 <p><b>Optional</b></p>
 <p>For some more discussion on dispersion, click below.</p>
 <p>
-<button class="btn btn-sm btn-primary btn-collapse btn-collapse-optional collapsed type=" button" data-toggle="collapse" data-target="#dge-dispersion" aria-expanded="false" aria-controls="dge-dispersion">
+&lt;button class=“btn btn-sm btn-primary btn-collapse btn-collapse-optional collapsed type=”button" data-toggle=“collapse” data-target=“#dge-dispersion” aria-expanded=“false” aria-controls=“dge-dispersion”&gt;
 </button>
 </p>
 <div id="dge-dispersion" class="collapse">
@@ -1013,7 +1042,7 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dm &lt;-<span class="st"> </span><span class="kw">apply</span>(cd,<span class="dv">1</span>,mean)
+<pre class="sourceCode r"><code class="sourceCode r">dm &lt;-<span class="st"> </span><span class="kw">apply</span>(cd,<span class="dv">1</span>,mean)
 dv &lt;-<span class="st"> </span><span class="kw">apply</span>(cd,<span class="dv">1</span>,var)
 
 <span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">mean=</span><span class="kw">log10</span>(dm<span class="op">+</span><span class="dv">1</span>),<span class="dt">var=</span><span class="kw">log10</span>(dv<span class="op">+</span><span class="dv">1</span>)),
@@ -1021,7 +1050,7 @@ dv &lt;-<span class="st"> </span><span class="kw">apply</span>(cd,<span class="d
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Mean counts&#39;</span>),<span class="dt">y=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Variance&#39;</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-39-1.svg" width="432" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>We see a mostly linear relationship on the log scale. The blue line denotes a linear fit. Genes that have larger read counts show higher variance. It’s hard to say which genes are more variable based on this alone. Therefore, variance is not a good measure to identify variation in read counts. A measure that controls for this mean-variance relationship is what we need.</p>
@@ -1030,7 +1059,7 @@ dv &lt;-<span class="st"> </span><span class="kw">apply</span>(cd,<span class="d
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cva &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">sd</span>(x)<span class="op">/</span><span class="kw">mean</span>(x)
+<pre class="sourceCode r"><code class="sourceCode r">cva &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">sd</span>(x)<span class="op">/</span><span class="kw">mean</span>(x)
 dc &lt;-<span class="st"> </span><span class="kw">apply</span>(cd,<span class="dv">1</span>,cva)
 
 <span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">mean=</span><span class="kw">log10</span>(dm<span class="op">+</span><span class="dv">1</span>),<span class="dt">var=</span>dc),
@@ -1038,7 +1067,7 @@ dc &lt;-<span class="st"> </span><span class="kw">apply</span>(cd,<span class="d
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_smooth</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Mean counts&#39;</span>),<span class="dt">y=</span><span class="st">&quot;Coefficient of variation&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-40-1.svg" width="432" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>Now, we see that genes with lower counts have higher variability and genes with larger counts have lower variability. A measure like CV is taking the ratio of ‘variation’ to mean. <code>cv=sd(x)/mean(x)</code>.</p>
@@ -1047,7 +1076,7 @@ dc &lt;-<span class="st"> </span><span class="kw">apply</span>(cd,<span class="d
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dx1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">t0=</span><span class="kw">apply</span>(cd[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>],<span class="dv">1</span>,cva),<span class="dt">t2=</span><span class="kw">apply</span>(cd[,<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>],<span class="dv">1</span>,cva),
+<pre class="sourceCode r"><code class="sourceCode r">dx1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">t0=</span><span class="kw">apply</span>(cd[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>],<span class="dv">1</span>,cva),<span class="dt">t2=</span><span class="kw">apply</span>(cd[,<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>],<span class="dv">1</span>,cva),
             <span class="dt">t6=</span><span class="kw">apply</span>(cd[,<span class="dv">7</span><span class="op">:</span><span class="dv">9</span>],<span class="dv">1</span>,cva),<span class="dt">t24=</span><span class="kw">apply</span>(cd[,<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>],<span class="dv">1</span>,cva))
 dx1<span class="op">$</span>gene &lt;-<span class="st"> </span><span class="kw">rownames</span>(dx1)
 dx1 &lt;-<span class="st"> </span>tidyr<span class="op">::</span><span class="kw">gather</span>(dx1,<span class="dt">key=</span>sample,<span class="dt">value=</span>cv,<span class="op">-</span>gene)
@@ -1066,7 +1095,7 @@ dx3 &lt;-<span class="st"> </span><span class="kw">merge</span>(dx1,dx2,<span cl
 <span class="st">  </span><span class="kw">geom_smooth</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>sample.x)<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Mean counts&#39;</span>),<span class="dt">y=</span><span class="st">&quot;Coefficient of variation&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-41-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>We find that CV strongly declines with increasing counts. Genes with low counts show higher dispersion. For the sake of completeness, we can also plot the relationship between CV and variance for the same sample groups.</p>
@@ -1074,7 +1103,7 @@ dx3 &lt;-<span class="st"> </span><span class="kw">merge</span>(dx1,dx2,<span cl
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dx1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">t0=</span><span class="kw">apply</span>(cd[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>],<span class="dv">1</span>,cva),<span class="dt">t2=</span><span class="kw">apply</span>(cd[,<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>],<span class="dv">1</span>,cva),
+<pre class="sourceCode r"><code class="sourceCode r">dx1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">t0=</span><span class="kw">apply</span>(cd[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>],<span class="dv">1</span>,cva),<span class="dt">t2=</span><span class="kw">apply</span>(cd[,<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>],<span class="dv">1</span>,cva),
             <span class="dt">t6=</span><span class="kw">apply</span>(cd[,<span class="dv">7</span><span class="op">:</span><span class="dv">9</span>],<span class="dv">1</span>,cva),<span class="dt">t24=</span><span class="kw">apply</span>(cd[,<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>],<span class="dv">1</span>,cva))
 dx1<span class="op">$</span>gene &lt;-<span class="st"> </span><span class="kw">rownames</span>(dx1)
 dx1 &lt;-<span class="st"> </span>tidyr<span class="op">::</span><span class="kw">gather</span>(dx1,<span class="dt">key=</span>sample,<span class="dt">value=</span>cv,<span class="op">-</span>gene)
@@ -1093,7 +1122,7 @@ dx3 &lt;-<span class="st"> </span><span class="kw">merge</span>(dx1,dx2,<span cl
 <span class="st">  </span><span class="kw">geom_smooth</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>sample.x)<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="kw">expression</span>(<span class="st">&#39;Log&#39;</span>[<span class="dv">10</span>]<span class="op">~</span><span class="st">&#39;Variance&#39;</span>),<span class="dt">y=</span><span class="st">&quot;Coefficient of variation&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-42-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
 </div>
 </div>
@@ -1106,8 +1135,8 @@ dx3 &lt;-<span class="st"> </span><span class="kw">merge</span>(dx1,dx2,<span cl
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span>DESeq2<span class="op">::</span><span class="kw">estimateDispersions</span>(d)
-<span class="kw">plotDispEsts</span>(d)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span>DESeq2<span class="op">::</span><span class="kw">estimateDispersions</span>(d)
+<span class="kw">plotDispEsts</span>(d)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-43-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>The black points denote the maximum likelihood dispersion estimate for each gene. The red curve denote the fitted curve. The blue points denote the new gene dispersion estimates after shrunk towards the curve. The circled blue points denote estimates that are not shrunk as they are too far away from the curve. Thus, shrinkage method is important to reduce false positives in DGE analysis involving too few replicates.</p>
@@ -1122,8 +1151,8 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dg &lt;-<span class="st"> </span><span class="kw">nbinomWaldTest</span>(d)
-<span class="kw">resultsNames</span>(dg)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">dg &lt;-<span class="st"> </span><span class="kw">nbinomWaldTest</span>(d)
+<span class="kw">resultsNames</span>(dg)</code></pre>
 <pre><code>## [1] &quot;Intercept&quot;      &quot;Time_t2_vs_t0&quot;  &quot;Time_t24_vs_t0&quot; &quot;Time_t6_vs_t0&quot;</code></pre>
 </div>
 <p>And we can get the result tables for the three different comparisons. The summary of the result object shows the number of genes that are differentially expressed with positive or negative fold-change and outliers.</p>
@@ -1131,12 +1160,12 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res1 &lt;-<span class="st"> </span><span class="kw">results</span>(dg,<span class="dt">name=</span><span class="st">&quot;Time_t2_vs_t0&quot;</span>,<span class="dt">alpha=</span><span class="fl">0.05</span>)
+<pre class="sourceCode r"><code class="sourceCode r">res1 &lt;-<span class="st"> </span><span class="kw">results</span>(dg,<span class="dt">name=</span><span class="st">&quot;Time_t2_vs_t0&quot;</span>,<span class="dt">alpha=</span><span class="fl">0.05</span>)
 <span class="kw">summary</span>(res1)
 res2 &lt;-<span class="st"> </span><span class="kw">results</span>(dg,<span class="dt">name=</span><span class="st">&quot;Time_t24_vs_t0&quot;</span>,<span class="dt">alpha=</span><span class="fl">0.05</span>)
 <span class="kw">summary</span>(res2)
 res3 &lt;-<span class="st"> </span><span class="kw">results</span>(dg,<span class="dt">name=</span><span class="st">&quot;Time_t6_vs_t0&quot;</span>,<span class="dt">alpha=</span><span class="fl">0.05</span>)
-<span class="kw">summary</span>(res3)</code></pre></div>
+<span class="kw">summary</span>(res3)</code></pre>
 <pre><code>## 
 ## out of 14578 with nonzero total read count
 ## adjusted p-value &lt; 0.05
@@ -1170,24 +1199,14 @@ res3 &lt;-<span class="st"> </span><span class="kw">results</span>(dg,<span clas
 ## [1] see &#39;cooksCutoff&#39; argument of ?results
 ## [2] see &#39;independentFiltering&#39; argument of ?results</code></pre>
 </div>
-<div class="block-title-parent">
-<div class="block-title small">
-R
-</div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
-<span class="kw">plot</span>(<span class="kw">density</span>(<span class="kw">na.omit</span>(res1<span class="op">$</span>log2FoldChange)),<span class="dt">main=</span><span class="st">&quot;log2FoldChange&quot;</span>)
-<span class="kw">plot</span>(<span class="kw">density</span>(<span class="kw">na.omit</span>(res1<span class="op">$</span>padj)),<span class="dt">main=</span><span class="st">&quot;BH adj pval&quot;</span>)
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
-<img src="lab_dge_files/figure-html/unnamed-chunk-46-1.svg" width="768" style="display: block; margin: auto auto auto 0;" />
-</div>
-<p>You can also build up the comparison using <strong>contrasts</strong>. Contrats need the condition, level to compare and the reference level (base level). For example, <code>results(dg,contrast=c(&quot;Time&quot;,&quot;t2&quot;,&quot;t0&quot;),alpha=0.05)</code>.</p>
+<p>You can also build up the comparison using <strong>contrasts</strong>. Contrats need the condition, level to compare and the reference level (base level). For example, <code>results(dg,contrast=c("Time","t2","t0"),alpha=0.05)</code>.</p>
 <p>Note that in both cases above, <code>t0</code> is the reference level and other levels are compared to this. Therefore, a fold-change of 2 would mean that, a gene is 2 fold higher expressed in the test level compared to <code>t0</code>.</p>
 <p>The <code>results()</code> function has many useful arguments. One can set a threshold on the logFC values using <code>lfcThreshold</code>. By default, no filtering is performed based on logFC values. Outliers are detected and p-values are set to NA automatically using <code>cooksCutoff</code>. <code>independentFiltering</code> remove genes with low counts.</p>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(res1)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(res1)</code></pre>
 <pre><code>## log2 fold change (MLE): Time t2 vs t0 
 ## Wald test p-value: Time t2 vs t0 
 ## DataFrame with 6 rows and 6 columns
@@ -1214,8 +1233,8 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(res1<span class="op">$</span>pvalue[res1<span class="op">$</span>baseMean<span class="op">&gt;</span><span class="dv">1</span>],<span class="dt">main=</span><span class="st">&quot;res1 Pval distribution&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;P-values&quot;</span>)</code></pre></div>
-<img src="lab_dge_files/figure-html/unnamed-chunk-48-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(res1<span class="op">$</span>pvalue[res1<span class="op">$</span>baseMean<span class="op">&gt;</span><span class="dv">1</span>],<span class="dt">main=</span><span class="st">&quot;res1 Pval distribution&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;P-values&quot;</span>)</code></pre>
+<img src="lab_dge_files/figure-html/unnamed-chunk-47-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>This is the kind of distribution to be expected when the p-values are “well-behaved”. For more explanation on p-value distributions, see <a href="http://varianceexplained.org/statistics/interpreting-pvalue-histogram/">here</a>. If this distribution is very different or strange, then it might indicate an underlying problem.</p>
 <p><i class='fas fa-lightbulb'></i> Note that the results object is a <code>DESeqResults</code> class object and not a data.frame. It can be converted to a data.frame using <code>as.data.frame()</code> for exporting to a file.</p>
@@ -1224,12 +1243,12 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># all genes</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># all genes</span>
 <span class="kw">nrow</span>(<span class="kw">as.data.frame</span>(res1))
 <span class="co"># only genes with padj &lt;0.05</span>
 <span class="kw">nrow</span>(<span class="kw">filter</span>(<span class="kw">as.data.frame</span>(res1),padj<span class="op">&lt;</span><span class="fl">0.05</span>))
 <span class="co"># only genes with padj &lt;0.05 and an absolute fold change &gt;2</span>
-<span class="kw">nrow</span>(<span class="kw">filter</span>(<span class="kw">as.data.frame</span>(res1),padj<span class="op">&lt;</span><span class="fl">0.05</span>,<span class="kw">abs</span>(log2FoldChange)<span class="op">&gt;</span><span class="dv">2</span>))</code></pre></div>
+<span class="kw">nrow</span>(<span class="kw">filter</span>(<span class="kw">as.data.frame</span>(res1),padj<span class="op">&lt;</span><span class="fl">0.05</span>,<span class="kw">abs</span>(log2FoldChange)<span class="op">&gt;</span><span class="dv">2</span>))</code></pre>
 <pre><code>## [1] 14578
 ## [1] 1109
 ## [1] 11</code></pre>
@@ -1240,7 +1259,7 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert res to data.frame</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert res to data.frame</span>
 df_res &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(res1)
 <span class="co"># add row names as a new column</span>
 df_res<span class="op">$</span>ensembl_gene_id &lt;-<span class="st"> </span><span class="kw">rownames</span>(df_res)
@@ -1251,7 +1270,7 @@ hg &lt;-<span class="st"> </span>hg[<span class="op">!</span><span class="kw">du
 
 <span class="co"># merge dataframes</span>
 df_res1 &lt;-<span class="st"> </span><span class="kw">merge</span>(df_res,hg,<span class="dt">by=</span><span class="st">&quot;ensembl_gene_id&quot;</span>)
-<span class="kw">head</span>(df_res1)</code></pre></div>
+<span class="kw">head</span>(df_res1)</code></pre>
 <pre><code>##   ensembl_gene_id  baseMean log2FoldChange      lfcSE       stat
 ## 1 ENSG00000000003 490.01721     0.22061981 0.11276108  1.9565244
 ## 2 ENSG00000000419 817.78066     0.05927197 0.10148128  0.5840680
@@ -1289,8 +1308,8 @@ df_res1 &lt;-<span class="st"> </span><span class="kw">merge</span>(df_res,hg,<s
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lres1 &lt;-<span class="st"> </span><span class="kw">lfcShrink</span>(dg,<span class="dt">coef=</span><span class="st">&quot;Time_t2_vs_t0&quot;</span>,<span class="dt">res=</span>res1)
-<span class="kw">summary</span>(lres1)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">lres1 &lt;-<span class="st"> </span><span class="kw">lfcShrink</span>(dg,<span class="dt">coef=</span><span class="st">&quot;Time_t2_vs_t0&quot;</span>,<span class="dt">res=</span>res1)
+<span class="kw">summary</span>(lres1)</code></pre>
 <pre><code>## 
 ## out of 14578 with nonzero total read count
 ## adjusted p-value &lt; 0.05
@@ -1306,7 +1325,7 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(lres1)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(lres1)</code></pre>
 <pre><code>## log2 fold change (MAP): Time t2 vs t0 
 ## Wald test p-value: Time t2 vs t0 
 ## DataFrame with 6 rows and 6 columns
@@ -1332,31 +1351,18 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(<span class="kw">density</span>(<span class="kw">na.omit</span>(lres1<span class="op">$</span>log2FoldChange)),<span class="dt">main=</span><span class="st">&quot;log2FoldChange&quot;</span>)
 <span class="kw">plot</span>(<span class="kw">density</span>(<span class="kw">na.omit</span>(lres1<span class="op">$</span>padj)),<span class="dt">main=</span><span class="st">&quot;BH adj pval&quot;</span>)
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
-<img src="lab_dge_files/figure-html/unnamed-chunk-53-1.svg" width="768" style="display: block; margin: auto auto auto 0;" />
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre>
+<img src="lab_dge_files/figure-html/unnamed-chunk-52-1.svg" width="768" style="display: block; margin: auto auto auto 0;" />
 </div>
 <div class="block-title-parent">
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check rownames are same</span>
-<span class="kw">all.equal</span>(<span class="kw">rownames</span>(res1),<span class="kw">rownames</span>(lres1))
-dfr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">gene=</span><span class="kw">rownames</span>(res1),<span class="dt">lfc=</span>res1<span class="op">$</span>log2FoldChange,<span class="dt">slfc=</span>lres1<span class="op">$</span>log2FoldChange,<span class="dt">diff=</span><span class="kw">abs</span>(res1<span class="op">$</span>log2FoldChange<span class="op">-</span>lres1<span class="op">$</span>log2FoldChange))
-
-<span class="kw">ggplot</span>(dfr,<span class="kw">aes</span>(lfc,slfc,<span class="dt">color=</span>diff))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotCounts</span>(d,<span class="dt">gene=</span><span class="st">&quot;ENSG00000095370&quot;</span>,<span class="dt">intgroup=</span><span class="st">&quot;Time&quot;</span>,<span class="dt">normalized=</span>T)</code></pre>
 <img src="lab_dge_files/figure-html/unnamed-chunk-54-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
-</div>
-<div class="block-title-parent">
-<div class="block-title small">
-R
-</div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotCounts</span>(d,<span class="dt">gene=</span><span class="st">&quot;ENSG00000095370&quot;</span>,<span class="dt">intgroup=</span><span class="st">&quot;Time&quot;</span>,<span class="dt">normalized=</span>T)</code></pre></div>
-<img src="lab_dge_files/figure-html/unnamed-chunk-55-1.svg" width="672" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>This step does not change the total number of DE genes. This may be useful in downstream steps where genes need to be filtered down based on fold change or if fold change values are used in functional analyses such as GSEA.</p>
 <p><i class="fas fa-comments"></i> How many DE genes do you get?</p>
@@ -1373,8 +1379,8 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DESeq2<span class="op">::</span><span class="kw">plotMA</span>(res1)</code></pre></div>
-<img src="lab_dge_files/figure-html/unnamed-chunk-56-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
+<pre class="sourceCode r"><code class="sourceCode r">DESeq2<span class="op">::</span><span class="kw">plotMA</span>(res1)</code></pre>
+<img src="lab_dge_files/figure-html/unnamed-chunk-55-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p><i class="fas fa-comments"></i> How does this plot change if you set log fold change filtering to minimum value of 1. How does the plot change when you use <code>lfcShrink()</code>?</p>
 </div>
@@ -1385,12 +1391,12 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>()<span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data=</span><span class="kw">as.data.frame</span>(res1),<span class="kw">aes</span>(<span class="dt">x=</span>log2FoldChange,<span class="dt">y=</span><span class="op">-</span><span class="kw">log10</span>(padj)),<span class="dt">col=</span><span class="st">&quot;grey80&quot;</span>,<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data=</span><span class="kw">filter</span>(<span class="kw">as.data.frame</span>(res1),padj<span class="op">&lt;</span><span class="fl">0.05</span>),<span class="kw">aes</span>(<span class="dt">x=</span>log2FoldChange,<span class="dt">y=</span><span class="op">-</span><span class="kw">log10</span>(padj)),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">alpha=</span><span class="fl">0.7</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="op">-</span><span class="kw">log10</span>(<span class="fl">0.05</span>)),<span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<img src="lab_dge_files/figure-html/unnamed-chunk-57-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<img src="lab_dge_files/figure-html/unnamed-chunk-56-1.svg" width="480" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p>X axis denotes log fold change and the y axis denotes -log10 adjusted p-value. The adjusted p-value is transformed so that the smallest p-values appears at the top. The horizontal grey line denotes the significance threshold line. All genes above this line (coloured red as well) are considered significant.</p>
 <p><i class="fas fa-comments"></i> Why is the y-axis (p-value) on a -log scale?</p>
@@ -1402,9 +1408,9 @@ R
 <div class="block-title small">
 R
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotCounts</span>(d,<span class="dt">gene=</span><span class="kw">rownames</span>(res1)[<span class="dv">1</span>],<span class="dt">intgroup=</span><span class="st">&quot;Time&quot;</span>,<span class="dt">normalized=</span>F)
-<span class="kw">plotCounts</span>(d,<span class="dt">gene=</span><span class="kw">rownames</span>(res1)[<span class="dv">1</span>],<span class="dt">intgroup=</span><span class="st">&quot;Time&quot;</span>,<span class="dt">normalized=</span>T)</code></pre></div>
-<img src="lab_dge_files/figure-html/unnamed-chunk-58-1.svg" width="480" style="display: block; margin: auto auto auto 0;" /><img src="lab_dge_files/figure-html/unnamed-chunk-58-2.svg" width="480" style="display: block; margin: auto auto auto 0;" />
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotCounts</span>(d,<span class="dt">gene=</span><span class="kw">rownames</span>(res1)[<span class="dv">1</span>],<span class="dt">intgroup=</span><span class="st">&quot;Time&quot;</span>,<span class="dt">normalized=</span>F)
+<span class="kw">plotCounts</span>(d,<span class="dt">gene=</span><span class="kw">rownames</span>(res1)[<span class="dv">1</span>],<span class="dt">intgroup=</span><span class="st">&quot;Time&quot;</span>,<span class="dt">normalized=</span>T)</code></pre>
+<img src="lab_dge_files/figure-html/unnamed-chunk-57-1.svg" width="480" style="display: block; margin: auto auto auto 0;" /><img src="lab_dge_files/figure-html/unnamed-chunk-57-2.svg" width="480" style="display: block; margin: auto auto auto 0;" />
 </div>
 <p><i class="fas fa-comments"></i> By looking at the count plots, do you agree that the top DE genes differ significantly between the groups compared?</p>
 </div>
@@ -1436,55 +1442,45 @@ Output
 ## [8] methods   base     
 ## 
 ## other attached packages:
-##  [1] formattable_0.2.0.1         kableExtra_1.1.0           
-##  [3] lubridate_1.7.4             fgsea_1.8.0                
-##  [5] Rcpp_1.0.1                  enrichR_1.0                
-##  [7] pvclust_2.0-0               rafalib_1.0.0              
-##  [9] biomaRt_2.39.3              leaflet_2.0.2              
-## [11] captioner_2.2.3             plotly_4.9.0               
-## [13] bookdown_0.9                knitr_1.22                 
-## [15] edgeR_3.24.3                limma_3.38.3               
-## [17] DESeq2_1.22.2               SummarizedExperiment_1.12.0
-## [19] DelayedArray_0.8.0          BiocParallel_1.16.6        
-## [21] matrixStats_0.54.0          Biobase_2.42.0             
-## [23] GenomicRanges_1.34.0        GenomeInfoDb_1.18.2        
-## [25] IRanges_2.16.0              S4Vectors_0.20.1           
-## [27] BiocGenerics_0.28.0         pheatmap_1.0.12            
-## [29] ggplot2_3.1.1               tidyr_0.8.3                
-## [31] dplyr_0.8.0.1              
+##  [1] pheatmap_1.0.12             edgeR_3.24.3               
+##  [3] limma_3.38.3                DESeq2_1.22.2              
+##  [5] SummarizedExperiment_1.12.0 DelayedArray_0.8.0         
+##  [7] BiocParallel_1.16.6         matrixStats_0.54.0         
+##  [9] Biobase_2.42.0              GenomicRanges_1.34.0       
+## [11] GenomeInfoDb_1.18.2         IRanges_2.16.0             
+## [13] S4Vectors_0.20.1            BiocGenerics_0.28.0        
+## [15] biomaRt_2.39.3              ggplot2_3.1.1              
+## [17] dplyr_0.8.0.1               captioner_2.2.3            
+## [19] bookdown_0.9                knitr_1.22                 
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] colorspace_1.4-1       rjson_0.2.20           htmlTable_1.13.1      
-##  [4] XVector_0.22.0         base64enc_0.1-3        rstudioapi_0.10       
-##  [7] ggpubr_0.2             xaringan_0.9           bit64_0.9-7           
-## [10] AnnotationDbi_1.44.0   xml2_1.2.0             splines_3.5.2         
-## [13] geneplotter_1.60.0     Formula_1.2-3          jsonlite_1.6          
-## [16] annotate_1.60.1        cluster_2.0.7-1        shiny_1.3.2           
-## [19] readr_1.3.1            compiler_3.5.2         httr_1.4.0            
-## [22] backports_1.1.4        assertthat_0.2.1       Matrix_1.2-15         
-## [25] lazyeval_0.2.2         later_0.8.0            acepack_1.4.1         
-## [28] htmltools_0.3.6        prettyunits_1.0.2      tools_3.5.2           
-## [31] gtable_0.3.0           glue_1.3.1             GenomeInfoDbData_1.2.0
-## [34] fastmatch_1.1-0        nlme_3.1-137           crosstalk_1.0.0       
-## [37] xfun_0.6               stringr_1.4.0          rvest_0.3.3           
-## [40] mime_0.6               XML_3.98-1.19          zlibbioc_1.28.0       
-## [43] scales_1.0.0           hms_0.4.2              promises_1.0.1        
-## [46] RColorBrewer_1.1-2     yaml_2.2.0             curl_3.3              
-## [49] memoise_1.1.0          gridExtra_2.3          rpart_4.1-13          
-## [52] latticeExtra_0.6-28    stringi_1.4.3          RSQLite_2.1.1         
-## [55] genefilter_1.64.0      checkmate_1.9.1        rlang_0.3.4           
-## [58] pkgconfig_2.0.2        bitops_1.0-6           evaluate_0.13         
-## [61] lattice_0.20-38        purrr_0.3.2            htmlwidgets_1.3       
-## [64] labeling_0.3           cowplot_0.9.4          bit_1.1-14            
-## [67] tidyselect_0.2.5       plyr_1.8.4             magrittr_1.5          
-## [70] R6_2.4.0               Hmisc_4.2-0            DBI_1.0.0             
-## [73] pillar_1.3.1           foreign_0.8-71         withr_2.1.2           
-## [76] mgcv_1.8-26            survival_2.43-3        RCurl_1.95-4.12       
-## [79] nnet_7.3-12            tibble_2.1.1           crayon_1.3.4          
-## [82] rmarkdown_1.12         progress_1.2.0         locfit_1.5-9.1        
-## [85] grid_3.5.2             data.table_1.12.2      blob_1.1.1            
-## [88] webshot_0.5.1          digest_0.6.18          xtable_1.8-3          
-## [91] httpuv_1.5.1           munsell_0.5.0          viridisLite_0.3.0</code></pre>
+##  [1] nlme_3.1-137           bitops_1.0-6           bit64_0.9-7           
+##  [4] RColorBrewer_1.1-2     progress_1.2.0         httr_1.4.0            
+##  [7] tools_3.5.2            backports_1.1.4        R6_2.4.0              
+## [10] rpart_4.1-13           mgcv_1.8-26            Hmisc_4.2-0           
+## [13] DBI_1.0.0              lazyeval_0.2.2         colorspace_1.4-1      
+## [16] nnet_7.3-12            withr_2.1.2            tidyselect_0.2.5      
+## [19] gridExtra_2.3          prettyunits_1.0.2      bit_1.1-14            
+## [22] compiler_3.5.2         htmlTable_1.13.1       labeling_0.3          
+## [25] scales_1.0.0           checkmate_1.9.1        genefilter_1.64.0     
+## [28] stringr_1.4.0          digest_0.6.18          foreign_0.8-71        
+## [31] rmarkdown_1.12         XVector_0.22.0         base64enc_0.1-3       
+## [34] pkgconfig_2.0.2        htmltools_0.3.6        htmlwidgets_1.3       
+## [37] rlang_0.3.4            rstudioapi_0.10        RSQLite_2.1.1         
+## [40] acepack_1.4.1          RCurl_1.95-4.12        magrittr_1.5          
+## [43] GenomeInfoDbData_1.2.0 Formula_1.2-3          Matrix_1.2-15         
+## [46] Rcpp_1.0.1             munsell_0.5.0          stringi_1.4.3         
+## [49] yaml_2.2.0             zlibbioc_1.28.0        plyr_1.8.4            
+## [52] grid_3.5.2             blob_1.1.1             crayon_1.3.4          
+## [55] lattice_0.20-38        cowplot_0.9.4          splines_3.5.2         
+## [58] annotate_1.60.1        hms_0.4.2              locfit_1.5-9.1        
+## [61] pillar_1.3.1           ggpubr_0.2             geneplotter_1.60.0    
+## [64] XML_3.98-1.19          glue_1.3.1             evaluate_0.13         
+## [67] latticeExtra_0.6-28    data.table_1.12.2      tidyr_0.8.3           
+## [70] gtable_0.3.0           purrr_0.3.2            assertthat_0.2.1      
+## [73] xfun_0.6               xtable_1.8-3           survival_2.43-3       
+## [76] tibble_2.1.1           AnnotationDbi_1.44.0   memoise_1.1.0         
+## [79] cluster_2.0.7-1</code></pre>
 </div>
 <p><strong>End of document</strong></p>
 </div>
